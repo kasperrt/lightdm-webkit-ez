@@ -1,0 +1,6 @@
+[theme]
+name=lightdm-webkit-ez
+description=A Slick styled greeter
+engine=lightdm-webkit-ez
+url=index.html
+session=mate

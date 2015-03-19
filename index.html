@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="static/style.css" />
+    <script type="text/javascript" src="js/clock.js"></script>
+</head>
+<body>
+    <div id="login-background"></div>
+    <div id="wrapper">
+        <div id="clock-box">
+            <script>startTime();</script>
+        </div>
+        <div id="login-box">
+            <img id="login-picture">
+            <div id="login-response">&nbsp;</div>
+            <form id="login-form">
+                <select id="login-name" tabindex="1">
+                </select>
+                <input placeholder="Password" type="password" id="login-password" tabindex="2">
+                <button id="login-button" type="submit" tabindex="3">
+                    Sign in
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="login-bar">
+        <img id="login-shutdown" src="static/action-shutdown.png">
+        <img id="login-restart" src="static/action-reboot.png">
+        
+    </div>
+    <script src="js/mock.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

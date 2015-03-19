@@ -1,0 +1,208 @@
+body
+{
+	background-color:black;
+	font-family:"Helvetica";
+	font-size:18px;
+}
+
+#login-background
+{
+	background-image:url(bg2.jpg);
+	background-size:100%;
+    background-repeat:no-repeat;
+    background-color:black;
+    background-position:center top;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+#wrapper
+{
+	z-index:1;
+	margin:auto;
+}
+
+#clock-box
+{
+	font-family:"Open Sans Light";
+	font-size:70px;
+	text-align:center;
+	color:white;
+}
+
+#login-box
+{
+	text-align:center;
+	background-color:rgba(255,255,255,0.6);
+	width:300px;
+	height:400px;
+	margin:30px auto;
+	border-radius:2px;
+	box-shadow: 0 0 100px 100px rgba(0,0,0,0.2);
+	overflow:hidden;
+}
+
+#login-picture
+{
+	border-radius:100%;
+	margin-top:30px;
+	height:7em;
+	-webkit-transition:all .5s ease-in-out;
+}
+
+#login-response
+{
+	width:100%;
+	margin-top:20px;
+	font-family:"Open Sans Light";
+	color:#00D500;
+	/*
+	Error
+	color:#FF1919;
+	*/
+}
+
+#login-form
+{
+	margin:auto;
+	margin-right:30px;
+	width:240px;
+}
+
+#login-name
+{
+	-webkit-appearance: none;
+	margin-top:40px;
+	background-color:white;
+	border:1px solid #e6e6e6;
+	width:100%;
+	height:40px;
+	border-radius:2px;
+	padding:6px 5px 10px 5px;
+	font-size:15px;
+	font-family:"Open Sans Light";
+	color:#5b5b5b;
+}
+
+#login-name:focus
+{
+	background-color:white;
+	border:1px solid #e6e6e6;
+}
+
+#login-password
+{
+	margin-top:5px;
+	background-color:white;
+	border:1px solid #e6e6e6;
+	padding:5px 5px 10px 10px;
+	border-radius:1px;
+	width:93.5%;
+	height:20px;
+	font-size:15px;
+	color:#5d5d5d;
+}
+
+#login-password::-webkit-input-placeholder {
+    font-family: 'Open Sans Light';
+}
+
+#login-password:-ms-input-placeholder {
+    font-family: 'Open Sans Light';
+}
+
+#login-password:-moz-placeholder {
+    font-family: 'Open Sans Light';
+}
+
+#login-password::-moz-placeholder {
+    font-family: 'Open Sans Light';
+}
+
+#login-name:hover,
+#login-password:hover
+{
+	border:1px solid #d5d5d5;
+	outline:none;
+}
+
+#login-name:focus,
+#login-name:active,
+#login-password:focus, 
+#login-password:active
+{
+	border:1px solid #b3b3b3;
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+	outline:none;
+}
+
+#login-button
+{
+	outline:0;
+	font-family: 'Open Sans Light';
+	font-size:15px;
+	margin-top:5px;
+	background-color:#b3b3b3;
+	color:white;
+	border:0.5px solid #e6e6e6;
+	padding:5px;
+	border-radius:2px;
+	width:100%;
+	height:40px;
+}
+
+#login-button:hover
+{
+	cursor:pointer;
+	border:1px solid #7f7f7f;
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+#login-button:active
+{
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+}
+
+#login-bar
+{
+	position:absolute;
+	right:20px;
+	bottom:20px;
+	-webkit-filter:brightness(300%);
+}
+
+#login-shutdown
+{
+	float:right;
+	width:40px;
+	color:white;
+	background-color:transparent;
+	border:none;
+	-webkit-transition:all 1s ease-in-out;
+	-webkit-filter:brightness(0%);
+}
+
+#login-shutdown:hover,
+#login-restart:hover
+{
+	cursor:pointer;
+	text-shadow:0 0 3px #FFFFFF;
+}
+
+#login-restart
+{
+	float:right;
+	margin-right:10px;
+	width:40px;
+	font-family:"Open Sans Light";
+	color:white;
+	background-color:transparent;
+	border:none;
+	-webkit-transition:all 1s ease-in-out;
+	-webkit-filter:brightness(0%);
+}
+
