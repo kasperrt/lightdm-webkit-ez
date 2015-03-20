@@ -1,3 +1,8 @@
+@font-face {
+    font-family: buttons;
+    src: url(NanumMyeongjo-Regular.ttf);
+}
+
 body
 {
 	background-color:black;
@@ -51,7 +56,7 @@ body
 	border-radius:100%;
 	margin-top:40px;
 	height:7em;
-	-webkit-transition:all .5s ease-in-out;
+	-webkit-transition:opacity .5s ease-in-out;
 }
 
 #login-response
@@ -89,16 +94,41 @@ body
 	display:none;
 }
 
+#last,
+#next
+{
+	color:#5b5b5b;
+	font-family:"buttons";
+}
+
+#last:hover,
+#next:hover
+{
+	cursor:pointer;
+}
+
 #last
 {
 	position:relative;
 	top:10px;
 	right:135px;
+	left:-20px;
+	width:12px;
 }
+
+#container
+{
+	margin-top:-20px;
+	width:99.5%;
+	overflow:hidden;
+	background-color:white;
+	border:1px solid #e6e6e6;
+	border-radius:1px;
+}
+
 
 #name
 {
-	margin-top:-20px;
 	margin-left: -31px;
     text-align: left;
     width: 200%;
@@ -107,27 +137,27 @@ body
     color: #5b5b5b;
     /* margin-bottom: 13px; */
     border-spacing: 31px 0px;
-    -webkit-transition:all .8s ease-in-out;
+    -webkit-transition:margin .8s ease-in-out;
+    text-align:center;
 }
 
 #name div
 {
 	display: table-cell;
-  background-color: white;
-  border: 1px solid #e6e6e6;
-  padding: 6px 5px 10px 9px;
-  border-radius: 1px;
-  min-width: 225px;
-  max-width: 225px;
-  /* margin: 100px; */
-  /* height: 100px; */
+  	padding: 6px 5px 10px 5px;
+  	min-width: 225px;
+  	max-width: 225px;
+  	/* margin: 100px; */
+  	/* height: 100px; */
 }
 
 #next
 {
 	position:relative;
 	top:-30px;
-	left:135px;
+	left:250px;
+	width:12px;
+	text-align:left;
 }
 
 #login-name:focus
@@ -226,7 +256,6 @@ body
 	color:white;
 	background-color:transparent;
 	border:none;
-	-webkit-transition:all 1s ease-in-out;
 }
 
 #login-shutdown:hover,
@@ -238,12 +267,10 @@ body
 
 #login-restart
 {
-	margin-right:10px;
 	width:40px;
 	font-family:"Open Sans Light";
 	color:white;
 	background-color:transparent;
 	border:none;
-	-webkit-transition:all 1s ease-in-out;
 }
 

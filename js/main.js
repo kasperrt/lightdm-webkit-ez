@@ -1,8 +1,11 @@
+var children;
+var curr = 1;
+
 var login = (function (lightdm, $) {
 
 	var selected_user = null;
 	var password = null;
-	var $user = $("#login-name");
+	var $user = $("#name");
 	var $pass = $("#login-password");
 
 	var setup_users_list = function () {
@@ -12,13 +15,10 @@ var login = (function (lightdm, $) {
             var username = lightdm.users[i].name;
             var dispname = lightdm.users[i].display_name;
             $list.append(
-                '<option value="' +
-                username +
-                '">' +
-                dispname +
-                '</option>'
+                '<div id="'+username+'">'+dispname+'</div>'
             );
         });
+        children = $("#name").children().length;
     };
 
     var select_user_from_list = function (idx) {
@@ -86,15 +86,24 @@ var login = (function (lightdm, $) {
             setup_users_list();
             select_user_from_list();
 
-            $user.on('change', function (e) {
-                e.preventDefault();
-                var idx = e.currentTarget.selectedIndex;
-                select_user_from_list(idx);
-            });
-
             $('form').on('submit', function (e) {
                 e.preventDefault();
                 window.provide_secret();
+            });
+            $("#last").on('click', function(e) {
+            	curr--;
+				if(curr <= 0)
+					curr = children;
+				if(children != 1) select_user_from_list(curr-1);
+				$("#name").css("margin-left", -31-(265*(curr-1))+"px");
+            });
+
+            $("#next").on('click', function (e) {
+            	curr++;
+				if(curr > children)
+					curr = 1;
+				if(children != 1) select_user_from_list(curr-1);
+				$("#name").css("margin-left", -31-(265*(curr-1))+"px");
             });
         });
     };
@@ -104,16 +113,5 @@ var login = (function (lightdm, $) {
     };
 
 } (lightdm, jQuery));
-
-function prev()
-{
-	$("#name").css("margin-left", (parseInt($("#name").css("margin-left").replace("px", ""))+272)+"px");
-}
-
-function next()
-{
-
-	$("#name").css("margin-left", ($("#name").css("margin-left").replace("px", "")-272)+"px");
-}
 
 login.init();
