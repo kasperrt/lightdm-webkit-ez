@@ -1,11 +1,9 @@
-#NOT FUNCTIONAL AT THE MOMENT IF YOU HAVE MORE USERS, AND ARE NOT USING THE FIRST USER
-
 # lightdm-webkit-ez
 LightDM-webkit theme, built from lightDM-webkit-google
 
 
 #Screenshot
-![alt tag](http://i.imgur.com/gR8qRLU.png)
+![alt tag](http://i.imgur.com/Q02sRYr.png)
 
 ### How to install
 
