@@ -105,4 +105,15 @@ var login = (function (lightdm, $) {
 
 } (lightdm, jQuery));
 
+function prev()
+{
+	$("#name").css("margin-left", (parseInt($("#name").css("margin-left").replace("px", ""))+272)+"px");
+}
+
+function next()
+{
+
+	$("#name").css("margin-left", ($("#name").css("margin-left").replace("px", "")-272)+"px");
+}
+
 login.init();
