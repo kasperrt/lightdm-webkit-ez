@@ -1,3 +1,5 @@
+#NOT FUNCTIONAL AT THE MOMENT IF YOU HAVE MORE USERS, AND ARE NOT USING THE FIRST USER
+
 # lightdm-webkit-ez
 LightDM-webkit theme, built from lightDM-webkit-google
 
