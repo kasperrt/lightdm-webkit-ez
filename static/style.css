@@ -64,7 +64,7 @@ body
 	width:100%;
 	margin-top:20px;
 	font-family:"Open Sans Light";
-	color:#00D500;
+	color:#FF1919;
 	/*
 	Error
 	color:#FF1919;
@@ -245,7 +245,7 @@ body
 #login-bar
 {
 	position:absolute;
-	bottom:5px;
+	bottom:10px;
 	text-align: center;
 	width:99%;
 }

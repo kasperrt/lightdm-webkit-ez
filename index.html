@@ -14,7 +14,7 @@
         <div id="login-box">
             <img id="login-picture">
             <div id="login-response">&nbsp;</div>
-            <form id="login-form">
+            <form id="login-form" action="javascript: provide_secret();">
                 <div id="last"><</div>
                 <div id="container">
                     <div id="name">
@@ -29,9 +29,8 @@
         </div>
     </div>
     <div id="login-bar">
-        <img id="login-shutdown" src="static/action-shutdown.png">
-        <img id="login-restart" src="static/action-reboot.png">
-        
+        <img id="login-shutdown" src="static/action-shutdown.png" onclick="lightdm.shutdown();">
+        <img id="login-restart" src="static/action-reboot.png" onclick="lightdm.restart();">
     </div>
     <script src="js/mock.js"></script>
     <script src="js/jquery-2.1.0.min.js"></script>

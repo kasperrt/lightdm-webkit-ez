@@ -1,117 +1,121 @@
 var children;
 var curr = 1;
+var selected_user = null;
+var password = null;
+var $user = $("#name");
+var $pass = $("#login-password");
+   
+function show_error()
+{
+	console.log("error")
+}
 
-var login = (function (lightdm, $) {
+function show_message(msg)
+{
+	document.getElementById("login-response").innerHTML = msg;
+}
 
-	var selected_user = null;
-	var password = null;
-	var $user = $("#name");
-	var $pass = $("#login-password");
+function setup_users_list()
+{
+	var $list = $user;
+    var to_append = null;
+    $.each(lightdm.users, function (i) {
+        var username = lightdm.users[i].name;
+        var dispname = lightdm.users[i].display_name;
+        $list.append(
+            '<div id="'+username+'">'+dispname+'</div>'
+        );
+    });
+    children = $("#name").children().length;
+}
 
-	var setup_users_list = function () {
-        var $list = $user;
-        var to_append = null;
-        $.each(lightdm.users, function (i) {
-            var username = lightdm.users[i].name;
-            var dispname = lightdm.users[i].display_name;
-            $list.append(
-                '<div id="'+username+'">'+dispname+'</div>'
-            );
-        });
-        children = $("#name").children().length;
-    };
+function select_user_from_list(idx, err)
+{
+	var idx = idx || 0;
 
-    var select_user_from_list = function (idx) {
-        var idx = idx || 0;
+	if(!err)
+    	find_and_display_user_picture(idx);
 
-        find_and_display_user_picture(idx);
+    if(lightdm._username){
+        lightdm.cancel_authentication();
+    }
 
-        if(lightdm._username){
-            lightdm.cancel_authentication();
-        }
+    selected_user = lightdm.users[idx].name;
+    if(selected_user !== null) {
+        start_authentication(selected_user);
+    }
 
-        selected_user = lightdm.users[idx].name;
-        if(selected_user !== null) {
-            window.start_authentication(selected_user);
-        }
+    $pass.trigger('focus');
+}
 
-        $pass.trigger('focus');
-    };
+function start_authentication(username)
+{
+   lightdm.cancel_timed_login ();
+   label = document.getElementById('countdown_label');
+   if (label != null)
+       label.style.visibility = "hidden";
+	
+	selected_user = username;
+    lightdm.start_authentication(username);
+    
+    show_message("");
+}
 
-     var find_and_display_user_picture = function (idx) {
-     	document.getElementById("login-picture").style.opacity = 0;
+function authentication_complete()
+{
+    if (lightdm.is_authenticated)
+    	lightdm.login (lightdm.authentication_user, lightdm.default_session);
+    else
+   	{
+    	select_user_from_list(curr-1, true);
+    	show_message ("Authentication Failed");
+   	}
 
-        setTimeout(function(){
-        	$('#login-picture').attr(
-            	'src',
-            	lightdm.users[idx].image
-        	);
-        	document.getElementById("login-picture").addEventListener("load", function(){document.getElementById("login-picture").style.opacity = 1;});
-        }, 250);
-        
-    };
+}
 
-    // Functions that lightdm needs
-    window.start_authentication = function (username) {
-        lightdm.cancel_timed_login();
-        lightdm.start_authentication(username);
-    };
-    window.provide_secret = function () {
-        password = $pass.val() || null;
+function find_and_display_user_picture(idx, z)
+{
+ 	document.getElementById("login-picture").style.opacity = 0;
 
-        if(password !== null) {
-            lightdm.provide_secret(password);
-        }
-    };
-    window.authentication_complete = function () {
-        if (lightdm.is_authenticated) {
-            lightdm.login(
-                lightdm.authentication_user,
-                lightdm.default_session
-            );
-        }
-    };
-    // These can be used for user feedback
-    window.show_error = function (e) {
-        document.getElementById("login-response").innerHTML = "Wrong Password!"
+    setTimeout(function(){
+    	$('#login-picture').attr(
+        	'src',
+        	lightdm.users[idx].image
+    	);
+    	document.getElementById("login-picture").addEventListener("load", function(){document.getElementById("login-picture").style.opacity = 1;});
+    }, 250);
+    
+}
 
-    };
-    window.show_prompt = function (e) {
-        console.log("prompt")
-    };
+function provide_secret()
+{
+  	password = $pass.val() || null;
+  	if(password !== null)
+        lightdm.provide_secret(password);
+}
 
+function init()
+{
+    setup_users_list();
+    select_user_from_list(0, false);
+    show_message ("&nbsp");
+    $("#last").on('click', function(e) {
+    	curr--;
+		if(curr <= 0)
+			curr = children;
+		if(children != 1) select_user_from_list(curr-1, false);
+		$("#name").css("margin-left", -31-(265*(curr-1))+"px");
+		show_message("&nbsp");
+    });
 
-	var init = function () {
-        $(function () {
-            setup_users_list();
-            select_user_from_list();
+    $("#next").on('click', function (e) {
+    	curr++;
+		if(curr > children)
+			curr = 1;
+		if(children != 1) select_user_from_list(curr-1, false);
+		$("#name").css("margin-left", -31-(265*(curr-1))+"px");
+		show_message("&nbsp");
+    });
+}
 
-            $('form').on('submit', function (e) {
-                e.preventDefault();
-                window.provide_secret();
-            });
-            $("#last").on('click', function(e) {
-            	curr--;
-				if(curr <= 0)
-					curr = children;
-				if(children != 1) select_user_from_list(curr-1);
-				$("#name").css("margin-left", -31-(265*(curr-1))+"px");
-            });
-
-            $("#next").on('click', function (e) {
-            	curr++;
-				if(curr > children)
-					curr = 1;
-				if(children != 1) select_user_from_list(curr-1);
-				$("#name").css("margin-left", -31-(265*(curr-1))+"px");
-            });
-        });
-    };
-
-    return {
-        init: init
-    };
-
-} (lightdm, jQuery));
-
-login.init();
+init();
