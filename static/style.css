@@ -256,6 +256,7 @@ body
 	color:white;
 	background-color:transparent;
 	border:none;
+	padding-bottom:2px;
 }
 
 #login-shutdown:hover,
@@ -267,7 +268,7 @@ body
 
 #login-restart
 {
-	width:40px;
+	width:42px;
 	font-family:"Open Sans Light";
 	color:white;
 	background-color:transparent;
