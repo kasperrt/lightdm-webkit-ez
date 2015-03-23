@@ -13,6 +13,7 @@ Instructions will differ for every platform, but I can tell you how to install i
 2. In the terminal, navigate to `/usr/share/lightdm-webkit/themes/`
 3. Clone this repository here, it should create a folder called `lightdm-webkit-ez`
 4. Enable the theme in your `/etc/lightdm/lightdm-webkit-greeter.conf`
+
 ### Setting your own user picture
 
 There are a couple of methods you can use to set your user picture in LightDM:
